@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talk to me</title>
+    <link rel="stylesheet" href="chat.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-history">
+        <h2>Chat History</h2>
+        <div class="history-messages" id="history-messages">
+          <!-- Chat history messages will appear here -->
+        </div>
+      </div>
+      <div class="chat-main">
+        <div class="chat-header">
+          <h1>Talk To Me</h1>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+          <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Type your message..."
+          />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="chat.js"></script>
+  </body>
+</html>

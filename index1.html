@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voidscape</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: lightcyan;
+        min-width: 160px;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown-content a:hover {
+        background-color: cyan;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .btn {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <nav>
+        <img src="img/logo.png" class="logo" />
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="chatbot/chat.html">Chatbot</a></li>
+          <li><a href="#">Meditation</a></li>
+          <li><a href="game/index.html">Games</a></li>
+          <li>
+            <a href="blog/Markdown-Blog/views/articles/index.ejs">Blog</a>
+          </li>
+          <li><a href="#">Videos</a></li>
+        </ul>
+        <div class="dropdown">
+          <p href="#" class="btn">Welcomr</p>
+        </div>
+      </nav>
+    </div>
+
+    <div id="myModalSignup" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div id="modalContentSignup"></div>
+    </div>
+
+    <script>
+      function openModal(type) {
+        var modal = document.getElementById("myModalSignup");
+        modal.style.display = "block";
+        fetch(type === "signup" ? "signup.html" : "login.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("modalContentSignup").innerHTML = data;
+          })
+          .catch((error) =>
+            console.error(`Error fetching ${type} content:`, error)
+          );
+        modal.classList.add("centered-modal");
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModalSignup");
+        modal.style.display = "none";
+        document.getElementById("modalContentSignup").innerHTML = "";
+        modal.classList.remove("centered-modal");
+      }
+    </script>
+  </body>
+</html>

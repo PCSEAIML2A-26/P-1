@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      form {
+        height: 500px;
+        width: 500px;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+        width: 500px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+
+      hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        margin-left: 34%;
+        margin-top: 10%;
+        width: 500px;
+        height: 500px;
+        background-color: white;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 500px;
+        height: 400px;
+        max-width: 500px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      button {
+        background-color: #04aa6d;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+      }
+
+      button:hover {
+        opacity: 1;
+      }
+
+      .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+      }
+
+      .cancelbtn,
+      .signupbtn {
+        float: left;
+        width: 50%;
+      }
+
+      .close:hover {
+        color: red;
+      }
+
+      .centered-modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 500px;
+      }
+      .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      @media screen and (max-width: 300px) {
+        .cancelbtn,
+        .signupbtn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <form
+        method="post"
+        action="login_page.php"
+        style="border: 1px solid black"
+      >
+        <h1>Login</h1>
+        <hr />
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required />
+        <label for="psw"><b>Password</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="Password"
+          required
+        />
+        <label>
+          <input
+            type="checkbox"
+            checked="checked"
+            name="remember"
+            style="margin-bottom: 15px"
+          />
+          Remember me
+        </label>
+        <div class="clearfix">
+          <button type="button" class="cancelbtn" onclick="closeModal()">
+            Cancel
+          </button>
+          <button type="submit" class="signupbtn" onclick="redirect()">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content centered-modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <script>
+      function openModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        fetch("signup.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("modalContent").innerHTML = data;
+          })
+          .catch((error) =>
+            console.error("Error fetching signup content:", error)
+          );
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+        document.getElementById("modalContent").innerHTML = "";
+      }
+
+      function redirect() {
+        window.location.href = "index1.html";
+      }
+    </script>
+  </body>
+</html>
